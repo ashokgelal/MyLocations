@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD78FB221549D994006B42B7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD78FB211549D994006B42B7 /* CoreLocation.framework */; };
 		CD7DCFF61549CDA200B9A28F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7DCFF51549CDA200B9A28F /* UIKit.framework */; };
 		CD7DCFF81549CDA200B9A28F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7DCFF71549CDA200B9A28F /* Foundation.framework */; };
 		CD7DCFFA1549CDA200B9A28F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7DCFF91549CDA200B9A28F /* CoreGraphics.framework */; };
@@ -14,7 +15,7 @@
 		CD7DD0021549CDA200B9A28F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DD0011549CDA200B9A28F /* main.m */; };
 		CD7DD0061549CDA200B9A28F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DD0051549CDA200B9A28F /* AppDelegate.m */; };
 		CD7DD0091549CDA200B9A28F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD7DD0071549CDA200B9A28F /* MainStoryboard.storyboard */; };
-		CD7DD00C1549CDA200B9A28F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DD00B1549CDA200B9A28F /* FirstViewController.m */; };
+		CD7DD00C1549CDA200B9A28F /* CurrentLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DD00B1549CDA200B9A28F /* CurrentLocationViewController.m */; };
 		CD7DD00E1549CDA200B9A28F /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7DD00D1549CDA200B9A28F /* first.png */; };
 		CD7DD0101549CDA200B9A28F /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7DD00F1549CDA200B9A28F /* first@2x.png */; };
 		CD7DD0131549CDA200B9A28F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DD0121549CDA200B9A28F /* SecondViewController.m */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD78FB211549D994006B42B7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CD7DCFF11549CDA200B9A28F /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7DCFF51549CDA200B9A28F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CD7DCFF71549CDA200B9A28F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,8 +36,8 @@
 		CD7DD0041549CDA200B9A28F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD7DD0051549CDA200B9A28F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CD7DD0081549CDA200B9A28F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		CD7DD00A1549CDA200B9A28F /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		CD7DD00B1549CDA200B9A28F /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		CD7DD00A1549CDA200B9A28F /* CurrentLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentLocationViewController.h; sourceTree = "<group>"; };
+		CD7DD00B1549CDA200B9A28F /* CurrentLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrentLocationViewController.m; sourceTree = "<group>"; };
 		CD7DD00D1549CDA200B9A28F /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		CD7DD00F1549CDA200B9A28F /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		CD7DD0111549CDA200B9A28F /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD78FB221549D994006B42B7 /* CoreLocation.framework in Frameworks */,
 				CD7DCFF61549CDA200B9A28F /* UIKit.framework in Frameworks */,
 				CD7DCFF81549CDA200B9A28F /* Foundation.framework in Frameworks */,
 				CD7DCFFA1549CDA200B9A28F /* CoreGraphics.framework in Frameworks */,
@@ -61,6 +64,7 @@
 		CD7DCFE61549CDA200B9A28F = {
 			isa = PBXGroup;
 			children = (
+				CD78FB211549D994006B42B7 /* CoreLocation.framework */,
 				CD7DCFFB1549CDA200B9A28F /* MyLocations */,
 				CD7DCFF41549CDA200B9A28F /* Frameworks */,
 				CD7DCFF21549CDA200B9A28F /* Products */,
@@ -91,8 +95,8 @@
 				CD7DD0041549CDA200B9A28F /* AppDelegate.h */,
 				CD7DD0051549CDA200B9A28F /* AppDelegate.m */,
 				CD7DD0071549CDA200B9A28F /* MainStoryboard.storyboard */,
-				CD7DD00A1549CDA200B9A28F /* FirstViewController.h */,
-				CD7DD00B1549CDA200B9A28F /* FirstViewController.m */,
+				CD7DD00A1549CDA200B9A28F /* CurrentLocationViewController.h */,
+				CD7DD00B1549CDA200B9A28F /* CurrentLocationViewController.m */,
 				CD7DD00D1549CDA200B9A28F /* first.png */,
 				CD7DD00F1549CDA200B9A28F /* first@2x.png */,
 				CD7DD0111549CDA200B9A28F /* SecondViewController.h */,
@@ -183,7 +187,7 @@
 			files = (
 				CD7DD0021549CDA200B9A28F /* main.m in Sources */,
 				CD7DD0061549CDA200B9A28F /* AppDelegate.m in Sources */,
-				CD7DD00C1549CDA200B9A28F /* FirstViewController.m in Sources */,
+				CD7DD00C1549CDA200B9A28F /* CurrentLocationViewController.m in Sources */,
 				CD7DD0131549CDA200B9A28F /* SecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +300,7 @@
 				CD7DD01C1549CDA200B9A28F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
