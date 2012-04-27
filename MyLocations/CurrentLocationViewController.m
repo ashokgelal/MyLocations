@@ -1,4 +1,5 @@
 #import "CurrentLocationViewController.h"
+#import "LocationDetailsViewController.h"
 
 @interface CurrentLocationViewController()
 -(void)updateLabels;
@@ -56,6 +57,16 @@
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"TagLocation"]){
+        UINavigationController *navigationController = segue.destinationViewController;
+        LocationDetailsViewController *controller = (LocationDetailsViewController *)(navigationController.topViewController);
+        controller.coordinate = location.coordinate;
+        controller.placemark = placemark; 
+    }
 }
 
 -(IBAction)getLocation:(id)sender

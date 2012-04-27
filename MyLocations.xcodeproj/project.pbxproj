@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD685A42154A61F80005BE20 /* LocationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD685A41154A61F80005BE20 /* LocationDetailsViewController.m */; };
 		CD78FB221549D994006B42B7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD78FB211549D994006B42B7 /* CoreLocation.framework */; };
 		CD7DCFF61549CDA200B9A28F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7DCFF51549CDA200B9A28F /* UIKit.framework */; };
 		CD7DCFF81549CDA200B9A28F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7DCFF71549CDA200B9A28F /* Foundation.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD685A40154A61F80005BE20 /* LocationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDetailsViewController.h; sourceTree = "<group>"; };
+		CD685A41154A61F80005BE20 /* LocationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDetailsViewController.m; sourceTree = "<group>"; };
 		CD78FB211549D994006B42B7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CD7DCFF11549CDA200B9A28F /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD7DCFF51549CDA200B9A28F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -64,10 +67,10 @@
 		CD7DCFE61549CDA200B9A28F = {
 			isa = PBXGroup;
 			children = (
-				CD78FB211549D994006B42B7 /* CoreLocation.framework */,
 				CD7DCFFB1549CDA200B9A28F /* MyLocations */,
 				CD7DCFF41549CDA200B9A28F /* Frameworks */,
 				CD7DCFF21549CDA200B9A28F /* Products */,
+				CD78FB211549D994006B42B7 /* CoreLocation.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +107,8 @@
 				CD7DD0141549CDA200B9A28F /* second.png */,
 				CD7DD0161549CDA200B9A28F /* second@2x.png */,
 				CD7DCFFC1549CDA200B9A28F /* Supporting Files */,
+				CD685A40154A61F80005BE20 /* LocationDetailsViewController.h */,
+				CD685A41154A61F80005BE20 /* LocationDetailsViewController.m */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				CD7DD0061549CDA200B9A28F /* AppDelegate.m in Sources */,
 				CD7DD00C1549CDA200B9A28F /* CurrentLocationViewController.m in Sources */,
 				CD7DD0131549CDA200B9A28F /* SecondViewController.m in Sources */,
+				CD685A42154A61F80005BE20 /* LocationDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
