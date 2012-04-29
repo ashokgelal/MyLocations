@@ -2,6 +2,8 @@
 #import "LocationDetailsViewController.h"
 #import "Location.h"
 #import "LocationCell.h"
+#import "UIImage+Resize.h"
+#import "NSMutableString+AddText.h"
 
 @implementation LocationsViewController{
     NSFetchedResultsController *fetchedResultsController;
@@ -94,15 +96,25 @@
     }
     
     if(location.placemark != nil){
-        locationCell.addressLabel.text = [NSString stringWithFormat:@"%@ %@, %@",
-                                          location.placemark.subThoroughfare,
-                                          location.placemark.thoroughfare,
-                                          location.placemark.locality];
+        NSMutableString *string = [NSMutableString stringWithCapacity:100];
+        [string addText:location.placemark.subThoroughfare withSeparator:@""];
+        [string addText:location.placemark.thoroughfare withSeparator:@" "];
+        [string addText:location.placemark.locality withSeparator:@" "];
+        locationCell.addressLabel.text = string; 
     }else{
         locationCell.addressLabel.text = [NSString stringWithFormat:@"Lat:%.8f, Long:%.8f",
                                           [location.latitude doubleValue],
                                           [location.longitude doubleValue]];
     }
+    
+    UIImage *image = nil;
+    if([location hasPhoto]){
+        image = [location photoImage];
+        if(image !=nil){
+            image = [image resizedImageWithBounds:CGSizeMake(66, 66)];
+        }
+    }
+    locationCell.imageView.image = image;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -182,6 +194,7 @@
 {
     if(editingStyle == UITableViewCellEditingStyleDelete){
         Location *location = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [location removePhotoFile];
         [self.managedObjectContext deleteObject:location];
         
         NSError *error;
@@ -191,4 +204,6 @@
         }
     }
 }
+
+
 @end

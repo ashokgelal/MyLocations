@@ -9,5 +9,9 @@
 
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) IBOutlet UIView *panelView;
+@property (strong, nonatomic) IBOutlet UILabel *latitudeTextLabel;
+@property (strong, nonatomic) IBOutlet UILabel *longitudeTextLabel;
+
 -(IBAction)getLocation:(id) sender;
 @end
