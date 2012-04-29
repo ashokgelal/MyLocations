@@ -1,6 +1,12 @@
 #import "LocationDetailsViewController.h"
+#import "HudView.h"
+#import "Location.h"
 
-@implementation LocationDetailsViewController
+@implementation LocationDetailsViewController{
+    NSString *descriptionText;
+    NSString *categoryName;
+    NSDate *date;
+}
 
 @synthesize descriptionTextView;
 @synthesize categoryLabel;
@@ -8,8 +14,23 @@
 @synthesize longitudeLabel;
 @synthesize addressLabel;
 @synthesize dateLabel;
+
+@synthesize locationToEdit;
 @synthesize coordinate;
 @synthesize placemark;
+
+@synthesize managedObjectContext;
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if((self=[super initWithCoder:aDecoder]))
+    {
+        descriptionText = @"";
+        categoryName = @"No Category";
+        date = [NSDate date];
+    }
+    return self;
+}
 
 -(NSString *)stringFromPlacemark:(CLPlacemark *)thePlacemark
 {
@@ -32,10 +53,17 @@
 -(void) viewDidLoad
 {
     [super viewDidLoad];
-    self.descriptionTextView.text = @"";
-    self.categoryLabel.text = @"";
+    
+    if(self.locationToEdit != nil){
+        self.title = @"Edit Location";
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    }
+    self.descriptionTextView.text = descriptionText;
+    self.categoryLabel.text = categoryName;
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.latitude];
     self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", self.coordinate.longitude];
+    self.dateLabel.text = [self formatDate:date];
     
     if(self.placemark != nil){
         self.addressLabel.text = [self stringFromPlacemark:self.placemark];
@@ -44,6 +72,10 @@
     }
     
     self.dateLabel.text = [self formatDate:[NSDate date]];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    [self.tableView addGestureRecognizer:gestureRecognizer];
 }
 
 -(void) viewDidUnload{
@@ -56,6 +88,29 @@
     self.dateLabel = nil;
 }
 
+-(void)setLocationToEdit:(Location *)newLocationToEdit
+{
+    if(locationToEdit != newLocationToEdit){
+        locationToEdit = newLocationToEdit;
+        
+        descriptionText = locationToEdit.locationDescription;
+        categoryName = locationToEdit.category;
+        coordinate = CLLocationCoordinate2DMake([locationToEdit.latitude doubleValue], [locationToEdit.longitude doubleValue]);
+        placemark = locationToEdit.placemark;
+        date = locationToEdit.date;
+    }
+}
+
+-(void)hideKeyboard:(UIGestureRecognizer *)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    if(indexPath != nil && indexPath.section == 0 && indexPath.row == 0){
+        return;
+    }
+    [self.descriptionTextView resignFirstResponder];
+}
+
 -(void) closeScreen
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -63,12 +118,66 @@
 
 -(IBAction)done:(id)sender
 {
-    [self closeScreen];
+    HudView *hudView = [HudView hudInView:self.navigationController.view animated:YES];
+    
+    Location *location = nil;
+    
+    if (self.locationToEdit != nil) {
+        hudView.text = @"Updated";
+        location = self.locationToEdit;
+    }
+    else{
+        hudView.text = @"Tagged";
+        location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:self.managedObjectContext];
+    }
+    
+    location.locationDescription = descriptionText;
+    location.category = categoryName;
+    location.latitude = [NSNumber numberWithDouble:self.coordinate.latitude];
+    location.longitude = [NSNumber numberWithDouble:self.coordinate.longitude];
+    location.date = date;
+    location.placemark = self.placemark;
+    
+    NSError *error;
+    if(![self.managedObjectContext save:&error]){
+        FATAL_CORE_DATA_ERROR(error);
+        return;
+    }
+    
+    [self performSelector:@selector(closeScreen) withObject:nil afterDelay:0.6];
 }
 
 -(IBAction)cancel:(id)sender
 {
     [self closeScreen];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"PickCategory"]){
+        CategoryPickerViewController *controller = segue.destinationViewController;
+        controller.delegate = self;
+        controller.selectedCategoryName = categoryName;
+        
+    }
+}
+
+#pragma mark - UITableViewDelegate
+
+-(NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0 || indexPath.section == 1){
+        return indexPath;
+    }
+    else {
+        return nil;
+    }
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0 && indexPath.row == 0){
+        [self.descriptionTextView becomeFirstResponder];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)theTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,5 +198,25 @@
     }
 }
 
+#pragma mark - UITextViewDelegate
+-(BOOL)textView:(UITextView *)theTextView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    descriptionText = [theTextView.text stringByReplacingCharactersInRange:range withString:text];
+    return YES;
+}
+
+-(void)textViewDidEndEditing:(UITextView *)theTextView
+{
+    descriptionText = theTextView.text;
+}
+
+
+#pragma mark - CategoryPickerViewController
+-(void)categoryPicker:(CategoryPickerViewController *)picker didPickCategory:(NSString *)theCategoryName
+{
+    categoryName = theCategoryName;
+    self.categoryLabel.text = categoryName;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

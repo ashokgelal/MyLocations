@@ -119,6 +119,119 @@
             </objects>
             <point key="canvasLocation" x="1091" y="-100"/>
         </scene>
+        <!--Navigation Controller - Locations-->
+        <scene sceneID="nbo-cn-g6S">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RRf-HB-b7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="fxa-ga-HEh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Locations" id="aZc-bf-gtM"/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="jz5-Pp-Yb5">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4ys-20-VMI" kind="relationship" relationship="rootViewController" id="ukT-P0-JdL"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="653" y="536"/>
+        </scene>
+        <!--Map View Controller - Map-->
+        <scene sceneID="ZAj-Yp-8q7">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UQm-XX-ABB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="JaM-7P-OhO" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uqE-Kx-93w">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="keG-lX-6XO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Map" id="jm6-cu-pTI">
+                                        <barButtonItem key="leftBarButtonItem" title="Locations" id="B8u-9n-Stg">
+                                            <connections>
+                                                <action selector="showLocations" destination="JaM-7P-OhO" id="yNR-lJ-LhE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="User" id="bVt-eI-EHy">
+                                            <connections>
+                                                <action selector="showUser" destination="JaM-7P-OhO" id="d5x-JI-NrC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="qe8-sH-vOu">
+                                <rect key="frame" x="0.0" y="44" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JaM-7P-OhO" id="0ZH-BF-gNc"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="Ofl-VU-8YB"/>
+                    <connections>
+                        <outlet property="mapView" destination="qe8-sH-vOu" id="8yg-hY-GIk"/>
+                        <segue destination="wk2-YK-WRv" kind="modal" identifier="EditLocation" id="9sQ-WR-pqc"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="881" y="1283"/>
+        </scene>
+        <!--Locations View Controller - Locations-->
+        <scene sceneID="OJh-vm-UBz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O88-c7-Cto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="4ys-20-VMI" customClass="LocationsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="3iC-gI-3IK">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Location" rowHeight="66" id="sjw-6m-Cf2" customClass="LocationCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="B3x-0C-9OI">
+                                            <rect key="frame" x="12" y="8" width="300" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" id="pM1-ER-oqX">
+                                            <rect key="frame" x="12" y="40" width="300" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="addressLabel" destination="pM1-ER-oqX" id="zXo-dR-YaD"/>
+                                    <outlet property="descriptionLabel" destination="B3x-0C-9OI" id="UDk-Zu-2Lw"/>
+                                    <segue destination="wk2-YK-WRv" kind="modal" identifier="EditLocation" id="vXg-9o-xJ7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4ys-20-VMI" id="Rdg-Pd-sPd"/>
+                            <outlet property="delegate" destination="4ys-20-VMI" id="TKK-u2-EkE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Locations" id="spM-7a-WQU"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1091" y="536"/>
+        </scene>
         <!--Location Details View Controller - Tag Location-->
         <scene sceneID="8Lb-eV-5uV">
             <objects>
@@ -131,7 +244,7 @@
                         <sections>
                             <tableViewSection headerTitle="Description" id="2Ae-d4-dWc">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="88" id="2Wn-zk-wgd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="88" id="2Wn-zk-wgd">
                                         <rect key="frame" x="0.0" y="46" width="320" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -143,6 +256,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="POp-7P-r9D" id="ZCf-R5-cXy"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -173,6 +289,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="EYd-ss-Vrj" kind="push" identifier="PickCategory" id="mh3-fh-t4A"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -331,38 +450,26 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2064" y="-100"/>
+            <point key="canvasLocation" x="2212" y="536"/>
         </scene>
-        <!--Second View Controller - Second-->
-        <scene sceneID="13">
+        <!--Category Picker View Controller - Choose Category-->
+        <scene sceneID="TPH-su-dO1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
-                <viewController title="Second" id="3" customClass="SecondViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="17">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mFW-kY-HFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="EYd-ss-Vrj" customClass="CategoryPickerViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EVJ-2c-Vmg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="22">
-                                <rect key="frame" x="54" y="98" width="212" height="43"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Loaded by the second view controller — an instance of SecondViewController — specified in the app delegate." textAlignment="center" id="23">
-                                <rect key="frame" x="20" y="181" width="280" height="88"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="6"/>
-                </viewController>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="EYd-ss-Vrj" id="eIv-gK-fef"/>
+                            <outlet property="delegate" destination="EYd-ss-Vrj" id="lYu-Dd-lUE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choose Category" id="BQu-GC-CkH"/>
+                </tableViewController>
             </objects>
-            <point key="canvasLocation" x="653" y="498"/>
+            <point key="canvasLocation" x="2695" y="214"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -377,11 +484,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="IN1-x2-VSj" kind="relationship" relationship="viewControllers" id="yeL-Ke-q1p"/>
-                        <segue destination="3" kind="relationship" relationship="viewControllers" id="27"/>
+                        <segue destination="fxa-ga-HEh" kind="relationship" relationship="viewControllers" id="AHi-i7-Z2b"/>
+                        <segue destination="JaM-7P-OhO" kind="relationship" relationship="viewControllers" id="hBC-c9-9PZ"/>
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="132" y="180"/>
+            <point key="canvasLocation" x="101" y="536"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jVf-s4-geq">
@@ -399,43 +507,15 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="1538" y="-100"/>
+            <point key="canvasLocation" x="1718" y="530"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="second" width="16" height="16"/>
-    </resources>
-    <classes>
-        <class className="CurrentLocationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurrentLocationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="getLocation:"/>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="getButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="latitudeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="longitudeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="messsageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tagButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="LocationDetailsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="latitudeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="longitudeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="9sQ-WR-pqc"/>
+    </inferredMetricsTieBreakers>
 </document>
